@@ -23,6 +23,7 @@ def get_correlations(data):
 
 
 def normalize_diabetes_data(data):
+    # formula ->  Z = (1/sqrt(n)) * ((x-mu)/std)
     mu_data = data.mean()
     std_data = data.std()
     normalized_data = data.sub(mu_data, axis='columns')
