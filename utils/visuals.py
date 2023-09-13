@@ -28,11 +28,8 @@ def save_scatter_plots(data, correlations):
     for var1 in data.columns:
         columns_pending = columns_pending.drop(var1)
         for var2 in columns_pending:
-            if not var1 == var2:
-                corr_value = str(correlations.loc[var1][var2])
-                save_scatter_plot(data, var1, var2, corr_value)
-            else:
-                continue
+            corr_value = str(correlations.loc[var1][var2])
+            save_scatter_plot(data, var1, var2, corr_value)
 
 
 def save_histogram_correlations(data):
