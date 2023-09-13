@@ -17,3 +17,5 @@ visu.save_histogram_correlations(data)
 # x = data["AGE"]
 # x = data.loc[:, "AGE"]
 # x.mean()
+
+normalized_data = proc.normalize_diabetes_data(data)
