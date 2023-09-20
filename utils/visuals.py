@@ -37,3 +37,11 @@ def save_histogram_correlations(data):
     fig = sns.pairplot(data, hue="SEX")
     fig.savefig("output/All_histograms.png")
     plt.close()
+
+
+def save_correlations_heatmap(data):
+    proc.check_output_folder("output")
+    new_fig = plt.figure()
+    sns.heatmap(data.corr(), annot=True, fmt='.2f').set(title="Correlations for Diabetes Dataset")
+    plt.savefig("output/correlations_heatmap.png")
+    plt.close(new_fig)
