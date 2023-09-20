@@ -34,3 +34,24 @@ R2 = proc.get_coefficient_determination(test_output,
 print("R² Score: ", R2)
 # var(mean) - var(line) / var(mean)
 # R² es  el porcentaje de variación descrito por la relación de dos variables
+
+# Usemos columna SEX como variable categórica (logistic regression)
+training, test = proc.split_data(normalized_data, 0.6)
+training_input = pd.DataFrame(training, columns=["AGE", "BMI", "BP"])
+training_output = pd.DataFrame(training, columns=["SEX"])
+test_input = pd.DataFrame(test, columns=["AGE", "BMI", "BP"])
+test_output = pd.DataFrame(test, columns=["SEX"])
+
+training_output = proc.values_2_categorical(training_output)
+test_output = proc.values_2_categorical(test_output)
+model = proc.logistic_regression(training_input, training_output)
+test_predictions = proc.test_predictions(model, test_input)
+
+coefficients = proc.get_coefficients(model)
+print("Logistic model Coefficients: ", coefficients)
+
+names = ['male', 'female']
+confusion_matrix = proc.get_confusion_matrix(test_output, test_predictions, names)
+visu.save_confusion_matrix(confusion_matrix)
+visu.save_roc_curve(test_output, test_predictions)
+

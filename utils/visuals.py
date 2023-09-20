@@ -1,6 +1,7 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 import utils.processing as proc
+from sklearn import metrics
 
 
 def save_histogram(data, column):
@@ -44,4 +45,20 @@ def save_correlations_heatmap(data):
     new_fig = plt.figure()
     sns.heatmap(data.corr(), annot=True, fmt='.2f').set(title="Correlations for Diabetes Dataset")
     plt.savefig("output/correlations_heatmap.png")
+    plt.close(new_fig)
+
+
+def save_confusion_matrix(confusion):
+    proc.check_output_folder("output")
+    new_fig = plt.figure()
+    sns.heatmap(confusion, annot=True, cmap='Blues')
+    plt.savefig("output/confusion_matrix.png")
+    plt.close(new_fig)
+
+
+def save_roc_curve(diabetes_y_test, diabetes_y_pred):
+    proc.check_output_folder("output")
+    new_fig = plt.figure()
+    metrics.RocCurveDisplay.from_predictions(diabetes_y_test, diabetes_y_pred)
+    plt.savefig("output/curve_ROC.png")
     plt.close(new_fig)
