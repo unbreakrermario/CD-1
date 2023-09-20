@@ -1,6 +1,7 @@
 import utils.imports as inp
 import utils.visuals as visu
 import utils.processing as proc
+import pandas as pd
 
 data = inp.read_diabetes_dataset("data/diabetes.tab.txt")
 print("archivo txt cargado")
@@ -13,10 +14,10 @@ correlation_data = proc.get_correlations(data)
 normalized_data = proc.normalize_diabetes_data(data)
 
 training, test = proc.split_data(normalized_data, 0.7)
-training_input = training["BMI"]
-training_output = training["Y"]
-test_input = test["BMI"]
-test_output = test["Y"]
+training_input = pd.DataFrame(training, columns=["AGE", "BMI", "BP"])
+training_output = pd.DataFrame(training, columns=["Y"])
+test_input = pd.DataFrame(test, columns=["AGE", "BMI", "BP"])
+test_output = pd.DataFrame(test, columns=["Y"])
 
 model = proc.simple_linear_regression(training_input,
                                       training_output)
