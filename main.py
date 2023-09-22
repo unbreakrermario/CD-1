@@ -3,7 +3,7 @@ import utils.visuals as visu
 import utils.processing as proc
 import pandas as pd
 
-data = inp.read_diabetes_dataset("data/diabetes.tab.txt")
+data = inp.read_natalidad_dataset("data\conjunto_de_datos_natalidad\conjunto_de_datos\conjunto_de_datos_natalidad_2017.csv")
 print("archivo txt cargado")
 correlation_data = proc.get_correlations(data)
 
