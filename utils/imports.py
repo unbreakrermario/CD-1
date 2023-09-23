@@ -6,6 +6,6 @@ def read_diabetes_dataset(path):
     return diabetes_dataset
 
 
-def read_natalidad_dataset(path):
-    diabetes_dataset = pd.read_csv(path, sep=';')
+def read_natalidad_dataset_2022(path):
+    diabetes_dataset = pd.read_csv(path, sep=',')
     return diabetes_dataset

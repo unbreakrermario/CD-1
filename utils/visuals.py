@@ -62,3 +62,18 @@ def save_roc_curve(diabetes_y_test, diabetes_y_pred):
     metrics.RocCurveDisplay.from_predictions(diabetes_y_test, diabetes_y_pred)
     plt.savefig("output/curve_ROC.png")
     plt.close(new_fig)
+
+
+def save_edades_padres_heatmap(data):
+    proc.check_output_folder("output")
+    new_fig = plt.figure()
+    sns.heatmap(data, fmt='.2f').set(title="Edades Padres")
+    plt.savefig("output/edades_heatmap.png")
+    plt.close(new_fig)
+
+
+def save_histogram_edades_padres(data):
+    proc.check_output_folder("output")
+    fig = sns.displot(data, kde=True)
+    fig.savefig("output/hsitograma_edades_padres.png")
+    plt.close()
