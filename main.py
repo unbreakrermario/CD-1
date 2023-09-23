@@ -3,9 +3,8 @@ import utils.visuals as visu
 import utils.processing as proc
 import pandas as pd
 
-data = inp.read_natalidad_dataset("data\conjunto_de_datos_natalidad\conjunto_de_datos\conjunto_de_datos_natalidad_2017.csv")
+data = inp.read_natalidad_dataset("data\conjunto_de_datos_natalidad\conjunto_de_datos\conjunto_de_datos_natalidad_2022.csv")
 print("archivo txt cargado")
-correlation_data = proc.get_correlations(data)
 
 # visu.save_histograms(data)
 # visu.save_scatter_plots(data, correlation_data)
