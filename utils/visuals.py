@@ -2,6 +2,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import utils.processing as proc
 from sklearn import metrics
+import plotly.graph_objects as go
+import plotly.express as px
 
 
 def save_histogram(data, column):
@@ -77,3 +79,13 @@ def save_histogram_edades_padres(data):
     fig = sns.displot(data, kde=True)
     fig.savefig("output/hsitograma_edades_padres.png")
     plt.close()
+
+
+def save_heatmap_edades(data):
+    proc.check_output_folder("output")
+    fig = go.Figure(px.density_heatmap(data, x="edad_padn", y="edad_madn",
+                                       color_continuous_scale="Rainbow",
+                                       range_color=[0, 5000],
+                                       title="Edades padres recien nacidos México 2022"))
+    fig.show()
+    fig.write_image("output/heatmap_edades_padres.svg")
