@@ -11,6 +11,7 @@ idx_filtered = data_edades_padres[data_edades_padres["edad_madn"] == 99].index
 data_edades_padres.drop(idx_filtered, inplace=True)
 idx_filtered = data_edades_padres[data_edades_padres["edad_padn"] == 99].index
 data_edades_padres.drop(idx_filtered, inplace=True)
-visu.save_histogram_edades_padres(data_edades_padres)
+
+# implementar plotly 2d histogram
+visu.save_heatmap_edades(data_edades_padres)
 print("grafica de padres completa")
-# pendiente implementar plotly 2d histogram
