@@ -4,6 +4,7 @@ import utils.processing as proc
 from sklearn import metrics
 import plotly.graph_objects as go
 import plotly.express as px
+import numpy as np
 
 
 def save_histogram(data, column):
@@ -85,7 +86,29 @@ def save_heatmap_edades(data):
     proc.check_output_folder("output")
     fig = go.Figure(px.density_heatmap(data, x="edad_padn", y="edad_madn",
                                        color_continuous_scale="Rainbow",
-                                       range_color=[0, 5000],
-                                       title="Edades padres recien nacidos México 2022"))
+                                       range_color=[0, 50],
+                                       title="Edades padres recien nacidos Queretaro 2022"))
     fig.show()
     fig.write_image("output/heatmap_edades_padres.svg")
+
+
+def save_heatmap_edades_logaritmico(data):
+    proc.check_output_folder("output")
+    z = np.histogram2d(data["edad_padn"], data["edad_madn"], bins=[75, 50], range=[[0, 75], [0, 50]])
+    fig = go.Figure(go.Heatmap(
+        z=z[0],
+        colorscale=[
+            [0, 'rgb(0, 0, 50)'],  # 0
+            [1. / 10000, 'rgb(0, 0, 100)'],  # 10
+            [1. / 1000, 'rgb(0, 0, 150)'],  # 100
+            [1. / 100, 'rgb(0, 0, 200)'],  # 1000
+            [1. / 10, 'rgb(0, 0, 250)'],  # 10000
+            [1., 'rgb(0, 0, 255)'], ], # 100000
+        colorbar=dict(
+            tick0=0,
+            tickmode='array',
+            tickvals=[0, 1000, 10000, 100000]
+        )
+    ))
+    fig.show()
+    # fig.write_image("output/heatmap_edades_padres.svg")
