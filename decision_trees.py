@@ -2,7 +2,6 @@ from sklearn.datasets import load_iris
 from sklearn import tree
 from sklearn.tree import export_text
 import utils.visuals as visu
-import numpy as np
 import pandas as pd
 import utils.processing as proc
 
