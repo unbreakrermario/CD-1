@@ -13,7 +13,7 @@ iris.feature_names.append("target")
 iris_df = pd.DataFrame(irisArray, columns=iris.feature_names)
 visu.save_scatter_plots(iris_df, iris_df.corr())
 
-train_data, test_data = proc.split_data(iris_df, 0.7)
+train_data, test_data = proc.split_data(iris_df, 0.6)
 x_train_data = train_data[train_data.columns[0:4]]
 y_train_data = train_data["target"]
 x_test_data = test_data[test_data.columns[0:4]]
