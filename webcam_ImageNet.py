@@ -22,7 +22,7 @@ model1 = Xception(weights='imagenet')
 font = cv2.FONT_HERSHEY_SIMPLEX
 bottomLeftCornerOfText = (10, 30)
 fontScale = 1
-fontColor = (228, 200, 50)
+fontColor = (0, 0, 250)
 lineType = 2
 
 while (True):
