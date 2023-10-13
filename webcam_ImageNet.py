@@ -42,7 +42,7 @@ while (True):
     # Cada red tiene su rutina antes de la clasificación, puede ser mejora de contraste
     # emborronamientos o rangos distintos (0 a 1, 1 a -1, 0 a 255, etc)
     I = preprocess_input(I)  # Preprocess y decode son propios de cada red, estan declarados en linea 12
-    preds = model1.predict(I)  # predicción entrega vector de 1000 valores
+    preds = model1.predict(I, verbose=0)  # predicción entrega vector de 1000 valores
     # Seleccionamos la mas alta, x será un listado de 3 valores, indicando el numero de categoria, texto y probabilidad
     x = decode_predictions(preds, top=1)[0]
     # Seleccionamos solamente el texto de la categoria clasificada
