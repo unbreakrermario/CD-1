@@ -121,3 +121,19 @@ def save_heatmap_edades_logaritmico(data):
 
     fig.show()
     # fig.write_image("output/heatmap_edades_padres.svg")
+
+
+def plot_airports_geoscatter(data):
+    fig = go.Figure(data=go.Scattergeo(
+        lon=data['LONGITUDE'],
+        lat=data['LATITUDE'],
+        text=data['DISPLAY_AIRPORT_NAME'],
+        mode='markers',
+        # marker_color=data['cnt'],
+    ))
+
+    fig.update_layout(
+        title='Most trafficked US airports<br>(Hover for airport names)',
+        geo_scope='usa',
+    )
+    fig.show()
