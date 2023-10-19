@@ -129,9 +129,9 @@ def plot_airports_geoscatter(data):
         lat=data['LATITUDE'],
         text=data['DISPLAY_AIRPORT_NAME'],
         mode='markers',
-        marker_color=data['count'],
-        marker=dict(color=data['count'],
-                    colorscale='Rainbow', size=14, colorbar=dict(thickness=20))
+        marker_color=data['count_total'],
+        marker=dict(color=data['count_total'],
+                    colorscale='Rainbow', size=8, colorbar=dict(thickness=20))
     ))
 
     fig.update_layout(
