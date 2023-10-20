@@ -25,14 +25,23 @@ new_airports = new_airports.reset_index()
 
 new_airports["count_total"] = new_airports["count_origin"] + new_airports["count_destination"]
 new_airports = new_airports.sort_values(by='count_total', ascending=False)
-visu.plot_airports_geoscatter(new_airports.head(n=20))
+visu.plot_airports_geoscatter(new_airports.head(n=15))
 
-visu.save_histogram(flights, "DAY_OF_MONTH")
-visu.save_histogram(flights, "TAIL_NUM")
-visu.save_histogram(flights, "OP_CARRIER")
-visu.save_histogram(flights, "DEST")
-visu.save_histogram(flights, "DEP_DELAY")
-visu.save_histogram(flights, "TAXI_OUT")
-visu.save_histogram(flights, "TAXI_IN")
-visu.save_histogram(flights, "CANCELLED")
-visu.save_histogram(flights, "DIVERTED")
+# From flights, extract rows corresponding to top 20 airports only
+top_airports = new_airports.head(n=15)
+flights_top_origin = flights.loc[flights["ORIGIN"].isin(top_airports["AIRPORT"])]
+flights_top_dest = flights.loc[flights["DEST"].isin(top_airports["AIRPORT"])]
+flights_top = flights_top_origin.merge(flights_top_dest, how='outer')
+
+idx_filtered = flights_top[flights_top["CANCELLED"] == 0].index
+flights_top.drop(idx_filtered, inplace=True)
+
+visu.save_histogram(flights_top, "DAY_OF_MONTH")
+visu.save_histogram(flights_top, "TAIL_NUM")
+visu.save_histogram(flights_top, "OP_CARRIER")
+visu.save_histogram(flights_top, "DEST")
+visu.save_histogram(flights_top, "DEP_DELAY")
+visu.save_histogram(flights_top, "TAXI_OUT")
+visu.save_histogram(flights_top, "TAXI_IN")
+visu.save_histogram(flights_top, "CANCELLED")
+visu.save_histogram(flights_top, "DIVERTED")
