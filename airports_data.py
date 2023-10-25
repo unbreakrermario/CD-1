@@ -36,6 +36,9 @@ flights_top = flights_top_origin.merge(flights_top_dest, how='outer')
 idx_filtered = flights_top[flights_top["CANCELLED"] == 0].index
 flights_top.drop(idx_filtered, inplace=True)
 
+# Use GeoScatter to show the airports with more cancelled flights
+
+
 visu.save_histogram(flights_top, "DAY_OF_MONTH")
 visu.save_histogram(flights_top, "TAIL_NUM")
 visu.save_histogram(flights_top, "OP_CARRIER")
